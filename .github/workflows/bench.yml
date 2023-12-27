@@ -37,11 +37,11 @@ jobs:
       run: cd algorithms/json-serde && hyperfine './target/release/json-serde canada' 'deno run -A main.ts canada' 'python3 main.py canada'
 
     - name: build fibonacci-rec
-      run: pwd && cd ../fibonacci-rec && rustc -O main.rs && zig build-exe .\main2.zig -O ReleaseFast -fstrip -fsingle-threaded
+      run: cd algorithms/fibonacci-rec && rustc -O main.rs && zig build-exe main2.zig -O ReleaseFast -fstrip -fsingle-threaded
     - name: warmup fibonacci-rec
-      run: cd ../fibonacci-rec && hyperfine --warmup 1 './main' 'go run main.go' 'node main.js' 'deno run main.ts' 'bun main.ts' './main2'
+      run: cd algorithms/fibonacci-rec && hyperfine --warmup 1 './main' 'go run main.go' 'node main.js' 'deno run main.ts' 'bun main.ts' './main2'
     - name: bench fibonacci-rec !
-      run: cd ../fibonacci-rec && hyperfine './main' 'go run main.go' 'node main.js' 'deno run main.ts' 'bun main.ts' './main2' 'python3 main.py'
+      run: cd algorithms/fibonacci-rec && hyperfine './main' 'go run main.go' 'node main.js' 'deno run main.ts' 'bun main.ts' './main2' 'python3 main.py'
     
       
     
