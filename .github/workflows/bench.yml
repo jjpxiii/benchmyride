@@ -19,14 +19,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Install hyperfine
-      run: cargo install --locked hyperfine
-    - name: Setup Deno
-      uses: denoland/setup-deno@61fe2df320078202e33d7d5ad347e7dcfa0e8f31  # v1.1.2
+    - uses: oven-sh/setup-bun@v1
+    - uses: denoland/setup-deno@61fe2df320078202e33d7d5ad347e7dcfa0e8f31  # v1.1.2
       with:
         deno-version: v1.x
+    - name: Install hyperfine
+      run: cargo install --locked hyperfine
     - name: build 
       run: cd algorithms/json-serde && cargo build -r 
+    - name: warmup
+      run: cd algorithms/json-serde && hyperfine --warmup 1 './target/release/json-serde canada' 'deno run -A main.ts canada' 'python3 main.py canada' 'bun run main.ts canada'
     - name: bench !
-      run: pwd && cd algorithms/json-serde && hyperfine './target/release/json-serde canada' 'deno run -A main.ts canada' 'python3 main.py canada'
+      run: cd algorithms/json-serde && hyperfine './target/release/json-serde canada' 'deno run -A main.ts canada' 'python3 main.py canada' 'bun run main.ts canada'
     
