@@ -30,7 +30,7 @@ jobs:
     - name: build json-serde
       run: cd algorithms/json-serde && cargo build -r 
     - name: warmup json-serde
-      run: cd algorithms/json-serde && hyperfine --warmup 1 './target/release/json-serde canada' 'deno run -A main.ts canada' 'python3 main.py canada' 'bun run main.ts canada'
+      run: cd algorithms/json-serde && hyperfine --warmup 1 './target/release/json-serde canada' 'deno run -A main.ts canada' 'python3 main.py canada'
     - name: bench json-serde !
       run: cd algorithms/json-serde && hyperfine './target/release/json-serde canada' 'deno run -A main.ts canada' 'python3 main.py canada'
 
@@ -39,7 +39,7 @@ jobs:
     - name: warmup fibonacci-rec
       run: cd algorithms/fibonacci-rec && hyperfine --warmup 1 './main' 'go run main.go' 'node main.js' 'deno run main.ts' 'bun main.ts' './main2'
     - name: bench fibonacci-rec !
-      run: cd algorithms/fibonacci-rec && hyperfine './main' 'go run main.go' 'node main.js' 'deno run main.ts' 'bun main.ts' './main2'
+      run: cd algorithms/fibonacci-rec && hyperfine './main' 'go run main.go' 'node main.js' 'deno run main.ts' 'bun main.ts' './main2' 'python3 main.py'
     
       
     
