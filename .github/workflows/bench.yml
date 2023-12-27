@@ -27,10 +27,19 @@ jobs:
         deno-version: v1.x
     - name: Install hyperfine
       run: cargo install --locked hyperfine
-    - name: build 
+    - name: build json-serde
       run: cd algorithms/json-serde && cargo build -r 
-    - name: warmup
+    - name: warmup json-serde
       run: cd algorithms/json-serde && hyperfine --warmup 1 './target/release/json-serde canada' 'deno run -A main.ts canada' 'python3 main.py canada' 'bun run main.ts canada'
-    - name: bench !
+    - name: bench json-serde !
       run: cd algorithms/json-serde && hyperfine './target/release/json-serde canada' 'deno run -A main.ts canada' 'python3 main.py canada'
+
+    - name: build fibonacci-rec
+      run: cd algorithms/fibonacci-rec && rustc -O main.rs && zig build-exe .\main2.zig -O ReleaseFast -fstrip -fsingle-threaded
+    - name: warmup fibonacci-rec
+      run: cd algorithms/fibonacci-rec && hyperfine --warmup 1 './main' 'go run main.go' 'node main.js' 'deno run main.ts' 'bun main.ts' './main2'
+    - name: bench fibonacci-rec !
+      run: cd algorithms/fibonacci-rec && hyperfine './main' 'go run main.go' 'node main.js' 'deno run main.ts' 'bun main.ts' './main2'
+    
+      
     
