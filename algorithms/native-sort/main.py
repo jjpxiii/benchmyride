@@ -3,7 +3,7 @@ import json
 
 
 def main():
-    with codecs.open('mil.json', 'r', 'utf-8-sig') as fp:
+    with codecs.open('10mil.json', 'r', 'utf-8-sig') as fp:
         json_str = fp.read()
     array = json.loads(json_str)
     array.sort()
