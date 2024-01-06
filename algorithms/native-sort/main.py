@@ -1,7 +1,6 @@
-import sys
 import codecs
 import json
-import hashlib
+
 
 def main():
     with codecs.open('mil.json', 'r', 'utf-8-sig') as fp:
