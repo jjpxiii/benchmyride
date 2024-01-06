@@ -36,7 +36,7 @@ jobs:
     # - name: warmup json-serde ⏰
     #   run: cd algorithms/json-serde && hyperfine --warmup 1 './target/release/json-serde canada 13' 'deno run -A main.ts canada 13' 'python3 main.py canada 13' 'bun run main_bun.ts' 'dart run main.dart'
     - name: bench json-serde ! ⏱
-      run: cd algorithms/json-serde && hyperfine './target/release/json-serde canada 13' 'deno run -A main.ts canada 13' 'python3 main.py canada 13' 'bun run main_bun.ts' 'dart run main.dart'
+      run: cd algorithms/json-serde && hyperfine './target/release/json-serde canada 13' 'deno run -A main.ts canada 13' 'python3 main.py canada 13' 'bun run main_bun.ts' 'dart run main.dart' 'go run main.go'
 
     - name: build fibonacci-rec 🏗
       run: cd algorithms/fibonacci-rec && rustc -O main_rust.rs && zig build-exe main_zig.zig -O ReleaseFast -fstrip -fsingle-threaded
@@ -50,4 +50,4 @@ jobs:
     # - name: warmup native-sort ⏰
     #   run: cd algorithms/native-sort && hyperfine --warmup 1 './target/release/native-sort' 'deno run -A main.ts' 'python3 main.py' 'bun run main_bun.ts' 'dart run main.dart'
     - name: bench native-sort ! ⏱
-      run: cd algorithms/native-sort && hyperfine './target/release/native-sort' 'deno run -A main.ts' 'python3 main.py' 'bun run main_bun.ts' 'dart run main.dart'
+      run: cd algorithms/native-sort && hyperfine './target/release/native-sort' 'deno run -A main.ts' 'python3 main.py' 'bun run main_bun.ts' 'dart run main.dart' 'go run main.go'
