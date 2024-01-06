@@ -1,5 +1,5 @@
 [package]
-name = "json-serde"
+name = "native-sort"
 version = "0.1.0"
 edition = "2021"
 
@@ -12,5 +12,5 @@ serde = "1.0.193"
 serde_json = "1.0.108"
 
 [[bin]]
-name = "json-serde"
+name = "native-sort"
 path = "main_rust.rs"
