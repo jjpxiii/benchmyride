@@ -1,0 +1,6 @@
+name: json_serde
+
+environment:
+  sdk: ">=2.18.0"
+dependencies:
+  crypto: ^3.0.3
