@@ -9,7 +9,7 @@ import (
 
 func main() {
 	var data []int
-	jsonStr, _ := os.ReadFile("10mil.json")
+	jsonStr, _ := os.ReadFile("../../assets/10mil.json")
 	json.Unmarshal([]byte(jsonStr), &data)
 	sort.Ints(data)
 	fmt.Printf("%v\n", data[666])
