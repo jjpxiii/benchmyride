@@ -36,7 +36,7 @@ jobs:
         run: cargo install --locked hyperfine
 
       - name: build json-serde 🏗
-        run: cd algorithms/json-serde && cargo build -r && dart pub get
+        run: cd algorithms/json-serde && cargo build -r && dart pub get && dotnet build --configuration Release
 
       - name: build native-sort 🏗
         run: cd algorithms/native-sort && cargo build -r && dart pub get && dotnet build --configuration Release
@@ -45,8 +45,8 @@ jobs:
         run: cd algorithms/fibonacci-rec && rustc -O main_rust.rs && zig build-exe main_zig.zig -O ReleaseFast -fstrip -fsingle-threaded
       # - name: warmup json-serde ⏰
       #   run: cd algorithms/json-serde && hyperfine --warmup 1 './target/release/json-serde canada 13' 'deno run -A main.ts canada 13' 'python3 main.py canada 13' 'bun run main_bun.ts' 'dart run main.dart'
-      # - name: bench json-serde ! ⏱
-      #   run: cd algorithms/json-serde && hyperfine './target/release/json-serde canada 13' 'deno run -A main.ts canada 13' 'python3 main.py canada 13' 'bun run main_bun.ts' 'dart run main.dart' 'go run main.go'
+      - name: bench json-serde ! ⏱
+        run: cd algorithms/json-serde && hyperfine './target/release/json-serde canada 13' './bin/Release/net8.0/json' 'deno run -A main.ts canada 13' 'python3 main.py canada 13' 'bun run main_bun.ts' 'dart run main.dart' 'go run main.go'
       # - name: warmup fibonacci-rec ⏰
       #   run: cd algorithms/fibonacci-rec && hyperfine --warmup 1 './main_rust' 'go run main.go' 'node main.js' 'deno run main.ts' 'bun main.ts' './main_zig' 'dart run main.dart'
       # - name: bench fibonacci-rec ! ⏱
