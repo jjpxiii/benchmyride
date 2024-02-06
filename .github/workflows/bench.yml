@@ -28,6 +28,8 @@ jobs:
         deno-version: v1.x
     - uses: goto-bus-stop/setup-zig@v2
     - uses: dart-lang/setup-dart@v1
+    - uses: actions/setup-dotnet@v4.0.0
+
     - name: Install hyperfine
       run: cargo install --locked hyperfine
 
