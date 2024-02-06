@@ -1,6 +1,8 @@
 .vscode
-target
-zig-cache
 *.exe
 *.exe.obj
 *.pdb
+bin
+obj
+target
+zig-cache
