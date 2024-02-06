@@ -51,7 +51,7 @@ jobs:
       # - name: warmup native-sort ⏰
       #   run: cd algorithms/native-sort && hyperfine --warmup 1 './target/release/native-sort' 'deno run -A main.ts' 'python3 main.py' 'bun run main_bun.ts' 'dart run main.dart'
       - name: bench native-sort ! ⏱
-        run: cd algorithms/native-sort && hyperfine './target/release/native-sort' './bin/Release/net8.0/sort' 'deno run -A main.ts' 'python3 main.py' 'bun run main_bun.ts' 'dart run main.dart' 'go run main.go' 'node main.mjs'
+        run: cd algorithms/native-sort && hyperfine './target/release/native-sort' 'dotnet run --configuration Release' 'deno run -A main.ts' 'python3 main.py' 'bun run main_bun.ts' 'dart run main.dart' 'go run main.go' 'node main.mjs'
 
     # - name: bench merge-sort ! ⏱
     #   run: cd algorithms/merge-sort && hyperfine 'deno run -A main.ts' 'bun run main_bun.ts' 'node main.mjs'
