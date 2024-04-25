@@ -17,7 +17,6 @@ async function main() {
     array.push(JSON.parse(jsonStr));
   }
   printHash(array);
-  printHash(JSON.stringify(array));
 }
 
 main();
