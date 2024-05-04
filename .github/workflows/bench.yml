@@ -56,7 +56,9 @@ jobs:
         run: cd algorithms/regex && cargo build -r && dotnet build --configuration Release
 
       - name: warmup json-serde ⏰
-        run: cd algorithms/json-serde && hyperfine --warmup 3 'deno run -A main.ts canada 13' 'node main.mjs'
+        run: cd algorithms/json-serde && hyperfine --warmup 3 'deno run -A main.ts canada 13'
+      - name: bench deno json-serde ⏰
+        run: cd algorithms/json-serde && hyperfine 'deno run -A main.ts canada 13'
       - name: bench json-serde ! ⏱
         run: cd algorithms/json-serde && hyperfine './target/release/json-serde canada 13' './bin/Release/net8.0/json' 'deno run -A main.ts canada 13' 'python3 main.py canada 13' 'bun run main_bun.ts' 'dart run main.dart' 'go run main.go' 'node main.mjs'
       # - name: warmup fibonacci-rec ⏰
