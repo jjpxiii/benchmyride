@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:crypto/crypto.dart' as crypto;
 
 Future<void> main(List<String> arguments) async {
   final jsonStr = await File('../../assets/10mil.json').readAsString();
