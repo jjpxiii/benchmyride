@@ -56,7 +56,7 @@ jobs:
         run: cd algorithms/regex && cargo build -r && dotnet build --configuration Release
 
       - name: warmup json-serde ⏰
-        run: cd algorithms/json-serde && hyperfine --warmup 3 'deno run -A main.ts canada 13'
+        run: cd algorithms/json-serde && hyperfine --warmup 3 'deno run -A main.ts canada 13' 'go run main.go'
       - name: bench deno json-serde ⏰
         run: cd algorithms/json-serde && hyperfine 'deno run -A main.ts canada 13'
       - name: bench json-serde ! ⏱
