@@ -40,8 +40,8 @@ jobs:
       - uses: dart-lang/setup-dart@v1
       - uses: actions/setup-dotnet@v4.0.0
 
-      - name: Install .net
-        run: sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
+      #- name: Install .net
+      #  run: sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
 
       - name: Install hyperfine
         run: cargo install --locked hyperfine
