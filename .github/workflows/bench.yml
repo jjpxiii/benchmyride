@@ -37,8 +37,8 @@ jobs:
       - uses: dart-lang/setup-dart@v1
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
-          
+          dotnet-version: "9.0.x"
+
       - name: Install hyperfine
         run: cargo install --locked hyperfine
 
@@ -59,7 +59,7 @@ jobs:
       - name: bench deno json-serde ⏰
         run: cd algorithms/json-serde && hyperfine 'deno run -A main.ts canada 13'
       - name: bench json-serde ! ⏱
-        run: cd algorithms/json-serde && hyperfine './target/release/json-serde canada 13' './bin/Release/net8.0/json' 'deno run -A main.ts canada 13' 'python3 main.py canada 13' 'bun run main_bun.ts' 'dart run main.dart' 'go run main.go' 'node main.mjs'
+        run: cd algorithms/json-serde && hyperfine './target/release/json-serde canada 13' './bin/Release/net9.0/json' 'deno run -A main.ts canada 13' 'python3 main.py canada 13' 'bun run main_bun.ts' 'dart run main.dart' 'go run main.go' 'node main.mjs'
       # - name: warmup fibonacci-rec ⏰
       #   run: cd algorithms/fibonacci-rec && hyperfine --warmup 1 './main_rust' 'go run main.go' 'node main.js' 'deno run main.ts' 'bun main.ts' './main_zig' 'dart run main.dart'
       - name: bench fibonacci-rec ! ⏱
