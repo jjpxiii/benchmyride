@@ -35,11 +35,10 @@ jobs:
           deno-version: v1.x
       - uses: goto-bus-stop/setup-zig@v2
       - uses: dart-lang/setup-dart@v1
-      - uses: actions/setup-dotnet@v4.0.0
-
-      - name: Install .net
-        run: sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
-
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+          
       - name: Install hyperfine
         run: cargo install --locked hyperfine
 
