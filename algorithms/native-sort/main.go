@@ -13,7 +13,7 @@ func main() {
 	json.Unmarshal([]byte(jsonStr), &data)
 	sort.Ints(data)
 	fmt.Printf("%v\n", data[666])
-	fmt.Printf("%v\n", data[666666])
+	fmt.Printf("%v\n", data[666667])
 }
 
 func ToJsonString(array []int32) []byte {
