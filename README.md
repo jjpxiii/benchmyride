@@ -13,3 +13,6 @@ Try this : hyperfine '.\target\release\json-serde.exe canada' 'deno run -A main.
 that : hyperfine 'main.exe' 'go run main.go' 'node main.js' 'deno run main.ts' 'main2.exe'
 
  hyperfine 'node main.js' 'deno run main.js' 'deno run main.ts' 'bun run main.js' 'bun run main.ts'
+
+
+ goooo
