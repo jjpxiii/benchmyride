@@ -43,34 +43,34 @@ jobs:
         run: cargo install --locked hyperfine
 
       - name: build json-serde 🏗
-        run: cd algorithms/json-serde && cargo build -r && dart pub get && dotnet build --configuration Release
+        run: cd algorithms/json-serde && cargo build -r && dart pub get && dotnet build --configuration Release && go build main.go
 
       - name: build native-sort 🏗
-        run: cd algorithms/native-sort && cargo build -r && dotnet build --configuration Release
+        run: cd algorithms/native-sort && cargo build -r && dotnet build --configuration Release && go build main.go
 
       - name: build fibonacci-rec 🏗
-        run: cd algorithms/fibonacci-rec && rustc -O main_rust.rs && zig build-exe main_zig.zig -O ReleaseFast -fstrip -fsingle-threaded && dotnet build --configuration Release && deno compile -o fibo_deno main.ts
+        run: cd algorithms/fibonacci-rec && rustc -O main_rust.rs && zig build-exe main_zig.zig -O ReleaseFast -fstrip -fsingle-threaded && dotnet build --configuration Release && deno compile -o fibo_deno main.ts && go build main.go
 
       - name: build regex 🏗
-        run: cd algorithms/regex && cargo build -r && dotnet build --configuration Release
+        run: cd algorithms/regex && cargo build -r && dotnet build --configuration Release && go build main.go
 
       - name: warmup json-serde ⏰
-        run: cd algorithms/json-serde && hyperfine --warmup 3 'deno run -A main.ts canada 13' 'go run main.go'
+        run: cd algorithms/json-serde && hyperfine --warmup 3 'deno run -A main.ts canada 13'
       - name: bench deno json-serde ⏰
         run: cd algorithms/json-serde && hyperfine 'deno run -A main.ts canada 13'
       - name: bench json-serde ! ⏱
-        run: cd algorithms/json-serde && hyperfine './target/release/json-serde canada 13' './bin/Release/net9.0/json' 'deno run -A main.ts canada 13' 'python3 main.py canada 13' 'bun run main_bun.ts' 'dart run main.dart' 'go run main.go' 'node main.mjs'
+        run: cd algorithms/json-serde && hyperfine './target/release/json-serde canada 13' './bin/Release/net9.0/json' 'deno run -A main.ts canada 13' 'python3 main.py canada 13' 'bun run main_bun.ts' 'dart run main.dart' './main' 'node main.mjs'
       # - name: warmup fibonacci-rec ⏰
       #   run: cd algorithms/fibonacci-rec && hyperfine --warmup 1 './main_rust' 'go run main.go' 'node main.js' 'deno run main.ts' 'bun main.ts' './main_zig' 'dart run main.dart'
       - name: bench fibonacci-rec ! ⏱
-        run: cd algorithms/fibonacci-rec && hyperfine './main_rust' './bin/Release/net8.0/fibo' 'go run main.go' 'node main.js' 'deno run main.ts' 'bun main.ts' './main_zig' 'dart run main.dart' './fibo_deno'
+        run: cd algorithms/fibonacci-rec && hyperfine './main_rust' './bin/Release/net8.0/fibo' './main' 'node main.js' 'deno run main.ts' 'bun main.ts' './main_zig' 'dart run main.dart' './fibo_deno'
       # - name: warmup native-sort ⏰
       #   run: cd algorithms/native-sort && hyperfine --warmup 1 './target/release/native-sort' 'deno run -A main.ts' 'python3 main.py' 'bun run main_bun.ts' 'dart run main.dart'
       - name: bench native-sort ! ⏱
-        run: cd algorithms/native-sort && hyperfine './target/release/native-sort' './bin/Release/net8.0/sort' 'deno run -A main.ts' 'python3 main.py' 'bun run main_bun.ts' 'dart run main.dart' 'go run main.go' 'node main.mjs'
+        run: cd algorithms/native-sort && hyperfine './target/release/native-sort' './bin/Release/net8.0/sort' 'deno run -A main.ts' 'python3 main.py' 'bun run main_bun.ts' 'dart run main.dart' 'node main.mjs' './main'
 
       - name: bench merge-sort ! ⏱
-        run: cd algorithms/merge-sort && hyperfine 'deno run -A main.ts' 'bun run main_bun.ts' 'node main.mjs'
+        run: cd algorithms/merge-sort && hyperfine 'deno run -A main.ts' 'bun run main_bun.ts' 'node main.mjs' 
 
       - name: bench regex ! ⏱
-        run: cd algorithms/regex && hyperfine './target/release/regexbench' './bin/Release/net8.0/regex' 'deno run -A main_deno.mjs' 'python3 main.py' 'bun run main_bun.mjs' 'dart run main.dart' 'go run main.go' 'node main.mjs'
+        run: cd algorithms/regex && hyperfine './target/release/regexbench' './bin/Release/net8.0/regex' 'deno run -A main_deno.mjs' 'python3 main.py' 'bun run main_bun.mjs' 'dart run main.dart' './main' 'node main.mjs'
